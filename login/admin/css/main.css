@@ -1,0 +1,100 @@
+/*styling for login admin*/
+
+body{
+	position: relative;
+	font-family: "Arial", sans-serif;
+	color: #fff;
+	text-align: center;
+	background-image: url("../images/bg.jpeg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+}
+
+
+h1{
+	color: #fff;
+	text-align: center;
+	font-style: bold;
+	font-family: 'Arial';
+	margin-top: 300px;
+	font-size: 3.5em;
+}
+
+label{
+	font-size: 1.5em;
+	font-family: sans-serif;
+	color: #fff;
+	margin: 15px;
+	text-align: center;
+}
+
+#message{
+	text-align: center;
+	font-family: "Arial", sans-serif;
+}
+
+#loginBox{ /*background box for all pages*/
+	color: #2295da;
+	text-align: center;
+	font-family: 'Arial';
+	margin: 0 auto;
+	margin-top: 10px;
+	width: 100%;
+}
+
+.login{
+	margin-top: 10%;
+}
+
+.login input{
+	padding: 5px;
+	width: 80%;
+}
+
+.login .btn{
+	margin-top: 8%;
+	margin-left: 80px;
+	width: 50%;
+	height: 50px;
+	color: #fff;
+	background-color: #129EE5;
+}
+
+#sign{
+	color: #3EA1ED;/*light blue*/
+	text-align: center;
+}
+
+.form{
+	margin-left: 20%;
+}
+
+
+input[type=submit] {
+	width: 25%;
+  color: #000;
+	font-size: 0.875em;
+	padding: 15px;
+}
+
+input[type=submit]:hover{
+	background-color: #1391e8;
+    color: #fff;
+}
+
+#logOut{
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
+	width: 40%;
+	background-color: #329fea;
+  color: #fff;
+	margin-top: 10px;
+	padding: 15px;
+}
+
+#logOut:hover{
+	background-color: #328aea;
+  color: #fff;
+}

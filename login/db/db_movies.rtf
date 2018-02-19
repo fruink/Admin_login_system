@@ -1,0 +1,1089 @@
+{\rtf1\ansi\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Courier New;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.16299}\viewkind4\uc1 
+\pard\f0\fs22\lang4105 -- phpMyAdmin SQL Dump\par
+-- version 4.7.4\par
+-- {{\field{\*\fldinst{HYPERLINK https://www.phpmyadmin.net/ }}{\fldrslt{https://www.phpmyadmin.net/\ul0\cf0}}}}\f0\fs22\par
+--\par
+-- Host: 127.0.0.1:3306\par
+-- Generation Time: Feb 19, 2018 at 11:24 PM\par
+-- Server version: 5.7.19\par
+-- PHP Version: 5.6.31\par
+\par
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";\par
+SET AUTOCOMMIT = 0;\par
+START TRANSACTION;\par
+SET time_zone = "+00:00";\par
+\par
+\par
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;\par
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;\par
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;\par
+/*!40101 SET NAMES utf8mb4 */;\par
+\par
+--\par
+-- Database: `db_movies`\par
+--\par
+\par
+-- --------------------------------------------------------\par
+\par
+--\par
+-- Table structure for table `tbl_arating`\par
+--\par
+\par
+DROP TABLE IF EXISTS `tbl_arating`;\par
+CREATE TABLE IF NOT EXISTS `tbl_arating` (\par
+  `arating_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,\par
+  `arating_name` varchar(125) NOT NULL,\par
+  `arating_desc` text NOT NULL,\par
+  PRIMARY KEY (`arating_id`)\par
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;\par
+\par
+--\par
+-- Dumping data for table `tbl_arating`\par
+--\par
+\par
+INSERT INTO `tbl_arating` (`arating_id`, `arating_name`, `arating_desc`) VALUES\par
+(1, 'G', 'G \'e2\'80\ldblquote  General Audiences\\r\\nAll ages admitted. Nothing that would offend parents for viewing by children. '),\par
+(2, 'PG', 'PG \'e2\'80\ldblquote  Parental Guidance Suggested\\r\\nSome material may not be suitable for children. Parents urged to give  \tab &ldquo;parental guidance&rdquo;. '),\par
+(3, 'PG-13', 'PG-13 \'e2\'80\ldblquote  Parents Strongly Cautioned\\r\\nSome material may be inappropriate for children under 13. Parents are urged to be cautious. Some material may be inappropriate for pre-teenagers.'),\par
+(4, 'R', 'R \'e2\'80\ldblquote  Restricted\\r\\nUnder 17 requires accompanying parent or adult guardian. Contains some adult material. Parents are urged to learn more about the film before taking their young children with them. '),\par
+(5, 'NC-17', 'NC-17 \'e2\'80\ldblquote  Adults Only\\r\\nNo One 17 and Under Admitted. Clearly adult. Children are not admitted. ');\par
+\par
+-- --------------------------------------------------------\par
+\par
+--\par
+-- Table structure for table `tbl_cast`\par
+--\par
+\par
+DROP TABLE IF EXISTS `tbl_cast`;\par
+CREATE TABLE IF NOT EXISTS `tbl_cast` (\par
+  `cast_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,\par
+  `cast_name` varchar(250) NOT NULL,\par
+  PRIMARY KEY (`cast_id`),\par
+  UNIQUE KEY `cast_name` (`cast_name`)\par
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;\par
+\par
+--\par
+-- Dumping data for table `tbl_cast`\par
+--\par
+\par
+INSERT INTO `tbl_cast` (`cast_id`, `cast_name`) VALUES\par
+(36, 'Amy Adams'),\par
+(26, 'Andrew Garfield'),\par
+(8, 'Aneurin Barnard'),\par
+(42, 'Anna Kendrick'),\par
+(14, 'Boyd Holbrook'),\par
+(5, 'Bradley Cooper'),\par
+(1, 'Chris Pratt'),\par
+(19, 'Colm Hill'),\par
+(13, 'Dafne Keen'),\par
+(7, 'Damien Bonnard'),\par
+(22, 'Dan Stevens'),\par
+(30, 'Darcy Bryce'),\par
+(3, 'Dave Bautista'),\par
+(33, 'Ed Skrein'),\par
+(21, 'Emma Watson'),\par
+(6, 'Fionn Whitehead'),\par
+(38, 'Forest Whitaker'),\par
+(46, 'Harrison Ford'),\par
+(11, 'Hugh Jackman'),\par
+(28, 'Jacob Warner'),\par
+(10, 'James Bloor'),\par
+(37, 'Jeremy Renner'),\par
+(45, 'Joseph Gordon-Levitt'),\par
+(24, 'Josh Gad'),\par
+(32, 'Karan Soni'),\par
+(20, 'Kathryn Kirkpatrick'),\par
+(25, 'Kevin Kline'),\par
+(9, 'Lee Armstrong'),\par
+(43, 'Leonardo DiCaprio'),\par
+(23, 'Luke Evans'),\par
+(40, 'Mark OBrien'),\par
+(34, 'Michael Benyaer'),\par
+(18, 'Michael Mitton'),\par
+(39, 'Michael Stuhlbarg'),\par
+(47, 'Miles Teller'),\par
+(29, 'Milo Gibson'),\par
+(12, 'Patrick Stewart'),\par
+(27, 'Richard Pyros'),\par
+(31, 'Ryan Reynolds'),\par
+(52, 'Sandra Bullock'),\par
+(44, 'Saoirse Ronan'),\par
+(17, 'Sheena Kamal'),\par
+(35, 'Stefan Kapicic'),\par
+(15, 'Stephen Merchant'),\par
+(53, 'Suraj Sharma'),\par
+(16, 'Tilda Swinton'),\par
+(41, 'Tom Costello'),\par
+(4, 'Vin Diesel'),\par
+(2, 'Zoe Saldana');\par
+\par
+-- --------------------------------------------------------\par
+\par
+--\par
+-- Table structure for table `tbl_comments`\par
+--\par
+\par
+DROP TABLE IF EXISTS `tbl_comments`;\par
+CREATE TABLE IF NOT EXISTS `tbl_comments` (\par
+  `comments_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,\par
+  `comments_auth` varchar(125) NOT NULL,\par
+  `comments_copy` text NOT NULL,\par
+  `comments_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\par
+  PRIMARY KEY (`comments_id`)\par
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;\par
+\par
+-- --------------------------------------------------------\par
+\par
+--\par
+-- Table structure for table `tbl_country`\par
+--\par
+\par
+DROP TABLE IF EXISTS `tbl_country`;\par
+CREATE TABLE IF NOT EXISTS `tbl_country` (\par
+  `country_id` smallint(3) NOT NULL AUTO_INCREMENT,\par
+  `country_name` varchar(100) NOT NULL,\par
+  PRIMARY KEY (`country_id`)\par
+) ENGINE=InnoDB AUTO_INCREMENT=195 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;\par
+\par
+--\par
+-- Dumping data for table `tbl_country`\par
+--\par
+\par
+INSERT INTO `tbl_country` (`country_id`, `country_name`) VALUES\par
+(1, 'Albania'),\par
+(2, 'Algeria'),\par
+(3, 'Andorra'),\par
+(4, 'Angola'),\par
+(5, 'Anguilla'),\par
+(6, 'Antarctica'),\par
+(7, 'Antigua'),\par
+(8, 'Antilles'),\par
+(9, 'Argentina'),\par
+(10, 'Armenia'),\par
+(11, 'Aruba'),\par
+(12, 'Australia'),\par
+(13, 'Austria'),\par
+(14, 'Azerbaijan'),\par
+(15, 'Bahamas'),\par
+(16, 'Bangladesh'),\par
+(17, 'Barbados'),\par
+(18, 'Belarus'),\par
+(19, 'Belgium'),\par
+(20, 'Belize'),\par
+(21, 'Benin'),\par
+(22, 'Bermuda'),\par
+(23, 'Bhutan'),\par
+(24, 'Bolivia'),\par
+(25, 'Bosnia'),\par
+(26, 'Botswana'),\par
+(27, 'Brazil'),\par
+(28, 'Brunei'),\par
+(29, 'Bulgaria'),\par
+(30, 'Burkina Faso'),\par
+(31, 'Burundi'),\par
+(32, 'Cambodia'),\par
+(33, 'Cameroon'),\par
+(34, 'Canada'),\par
+(35, 'Cape Verde'),\par
+(36, 'Cayman Islands'),\par
+(37, 'Central Africa'),\par
+(38, 'Chad'),\par
+(39, 'Chile'),\par
+(40, 'China'),\par
+(41, 'Colombia'),\par
+(42, 'Comoros'),\par
+(43, 'Congo'),\par
+(44, 'Cook Islands'),\par
+(45, 'Costa Rica'),\par
+(46, 'Cote D\\'Ivoire'),\par
+(47, 'Croatia'),\par
+(48, 'Cuba'),\par
+(49, 'Cyprus'),\par
+(50, 'Czech Republic'),\par
+(51, 'Denmark'),\par
+(52, 'Djibouti'),\par
+(53, 'Dominica'),\par
+(54, 'Dominican Rep.'),\par
+(55, 'Ecuador'),\par
+(56, 'Egypt'),\par
+(57, 'El Salvador'),\par
+(58, 'Eritrea'),\par
+(59, 'Estonia'),\par
+(60, 'Ethiopia'),\par
+(61, 'Fiji'),\par
+(62, 'Finland'),\par
+(63, 'Falkland Islands'),\par
+(64, 'France'),\par
+(65, 'Gabon'),\par
+(66, 'Gambia'),\par
+(67, 'Georgia'),\par
+(68, 'Germany'),\par
+(69, 'Ghana'),\par
+(70, 'Gibraltar'),\par
+(71, 'Greece'),\par
+(72, 'Greenland'),\par
+(73, 'Grenada'),\par
+(74, 'Guam'),\par
+(75, 'Guatemala'),\par
+(76, 'Guiana'),\par
+(77, 'Guinea'),\par
+(78, 'Guyana'),\par
+(79, 'Haiti'),\par
+(80, 'Hondoras'),\par
+(81, 'Hong Kong'),\par
+(82, 'Hungary'),\par
+(83, 'Iceland'),\par
+(84, 'India'),\par
+(85, 'Indonesia'),\par
+(86, 'Iran'),\par
+(87, 'Iraq'),\par
+(88, 'Ireland'),\par
+(89, 'Israel'),\par
+(90, 'Italy'),\par
+(91, 'Jamaica'),\par
+(92, 'Japan'),\par
+(93, 'Jordan'),\par
+(94, 'Kazakhstan'),\par
+(95, 'Kenya'),\par
+(96, 'Kiribati'),\par
+(97, 'Korea'),\par
+(98, 'Kyrgyzstan'),\par
+(99, 'Lao'),\par
+(100, 'Latvia'),\par
+(101, 'Lesotho'),\par
+(102, 'Liberia'),\par
+(103, 'Liechtenstein'),\par
+(104, 'Lithuania'),\par
+(105, 'Luxembourg'),\par
+(106, 'Macau'),\par
+(107, 'Macedonia'),\par
+(108, 'Madagascar'),\par
+(109, 'Malawi'),\par
+(110, 'Malaysia'),\par
+(111, 'Maldives'),\par
+(112, 'Mali'),\par
+(113, 'Malta'),\par
+(114, 'Marshal Islands'),\par
+(115, 'Martinique'),\par
+(116, 'Mauritania'),\par
+(117, 'Mauritius'),\par
+(118, 'Mayotte'),\par
+(119, 'Mexico'),\par
+(120, 'Micronesia'),\par
+(121, 'Moldova'),\par
+(122, 'Monaco'),\par
+(123, 'Mongolia'),\par
+(124, 'Montserrat'),\par
+(125, 'Morocco'),\par
+(126, 'Mozambique'),\par
+(127, 'Myanmar'),\par
+(128, 'Namibia'),\par
+(129, 'Nauru'),\par
+(130, 'Nepal'),\par
+(131, 'Netherlands'),\par
+(132, 'New Caledonia'),\par
+(133, 'New Guinea'),\par
+(134, 'New Zealand'),\par
+(135, 'Nicaragua'),\par
+(136, 'Nigeria'),\par
+(137, 'Niue'),\par
+(138, 'Norfolk Island'),\par
+(139, 'Norway'),\par
+(140, 'Palau'),\par
+(141, 'Panama'),\par
+(142, 'Paraguay'),\par
+(143, 'Peru'),\par
+(144, 'Puerto'),\par
+(145, 'Philippines'),\par
+(146, 'Poland'),\par
+(147, 'Polynesia'),\par
+(148, 'Portugal'),\par
+(149, 'Romania'),\par
+(150, 'Russia'),\par
+(151, 'Rwanda'),\par
+(152, 'Saint Lucia'),\par
+(153, 'Samoa'),\par
+(154, 'San Marino'),\par
+(155, 'Senegal'),\par
+(156, 'Seychelles'),\par
+(157, 'Sierra Leone'),\par
+(158, 'Singapore'),\par
+(159, 'Slovakia'),\par
+(160, 'Slovenia'),\par
+(161, 'Somalia'),\par
+(162, 'South Africa'),\par
+(163, 'Spain'),\par
+(164, 'Sri Lanka'),\par
+(165, 'St. Helena'),\par
+(166, 'Sudan'),\par
+(167, 'Suriname'),\par
+(168, 'Swaziland'),\par
+(169, 'Sweden'),\par
+(170, 'Switzerland'),\par
+(171, 'Taiwan'),\par
+(172, 'Tajikistan'),\par
+(173, 'Tanzania'),\par
+(174, 'Thailand'),\par
+(175, 'Togo'),\par
+(176, 'Tokelau'),\par
+(177, 'Tonga'),\par
+(178, 'Trinidad'),\par
+(179, 'Tunisia'),\par
+(180, 'Turkey'),\par
+(181, 'Uganda'),\par
+(182, 'Ukraine'),\par
+(183, 'United Kingdom'),\par
+(184, 'United States'),\par
+(185, 'Uruguay'),\par
+(186, 'Uzbekistan'),\par
+(187, 'Vanuatu'),\par
+(188, 'Venezuela'),\par
+(189, 'Vietnam'),\par
+(190, 'Virgin Islands'),\par
+(191, 'Yugoslavia'),\par
+(192, 'Zaire'),\par
+(193, 'Zambia'),\par
+(194, 'Zimbabwe');\par
+\par
+-- --------------------------------------------------------\par
+\par
+--\par
+-- Table structure for table `tbl_director`\par
+--\par
+\par
+DROP TABLE IF EXISTS `tbl_director`;\par
+CREATE TABLE IF NOT EXISTS `tbl_director` (\par
+  `director_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,\par
+  `director_name` varchar(250) NOT NULL,\par
+  PRIMARY KEY (`director_id`)\par
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;\par
+\par
+--\par
+-- Dumping data for table `tbl_director`\par
+--\par
+\par
+INSERT INTO `tbl_director` (`director_id`, `director_name`) VALUES\par
+(1, 'James Gunn'),\par
+(2, 'Christopher Nolan'),\par
+(3, 'James Mangold'),\par
+(4, 'Joon-ho Bong'),\par
+(5, 'Bill Condon'),\par
+(6, 'Mel Gibson'),\par
+(7, 'Tim Miller'),\par
+(8, 'Denis Villeneuve '),\par
+(9, 'Dexter Fletcher'),\par
+(10, 'Mike Mitchell'),\par
+(11, 'Walt Dohrn'),\par
+(12, 'Alejandro Gonzalez Inarritu'),\par
+(13, 'John Crowley '),\par
+(14, 'Robert Zemeckis'),\par
+(15, 'Florian Gallenberger '),\par
+(16, 'J.J. Abrams'),\par
+(17, 'Damien Chazelle'),\par
+(18, 'Joseph Gordon-Levitt '),\par
+(19, 'Alfonso Cuaron'),\par
+(20, 'Ang Lee'),\par
+(21, 'David O. Russell');\par
+\par
+-- --------------------------------------------------------\par
+\par
+--\par
+-- Table structure for table `tbl_genre`\par
+--\par
+\par
+DROP TABLE IF EXISTS `tbl_genre`;\par
+CREATE TABLE IF NOT EXISTS `tbl_genre` (\par
+  `genre_id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT,\par
+  `genre_name` varchar(125) NOT NULL,\par
+  PRIMARY KEY (`genre_id`)\par
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;\par
+\par
+--\par
+-- Dumping data for table `tbl_genre`\par
+--\par
+\par
+INSERT INTO `tbl_genre` (`genre_id`, `genre_name`) VALUES\par
+(1, 'Action'),\par
+(2, 'Adventure'),\par
+(3, 'Comedy'),\par
+(4, 'Crime'),\par
+(5, 'Drama'),\par
+(6, 'Historical'),\par
+(7, 'Horror'),\par
+(8, 'Musical'),\par
+(9, 'Science Fiction'),\par
+(10, 'War'),\par
+(11, 'Western'),\par
+(12, 'Animation'),\par
+(13, 'Family'),\par
+(14, 'Fantasy'),\par
+(15, 'Romance'),\par
+(16, 'Sport');\par
+\par
+-- --------------------------------------------------------\par
+\par
+--\par
+-- Table structure for table `tbl_language`\par
+--\par
+\par
+DROP TABLE IF EXISTS `tbl_language`;\par
+CREATE TABLE IF NOT EXISTS `tbl_language` (\par
+  `lang_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,\par
+  `lang_name` varchar(250) NOT NULL,\par
+  PRIMARY KEY (`lang_id`)\par
+) ENGINE=InnoDB AUTO_INCREMENT=216 DEFAULT CHARSET=utf8;\par
+\par
+--\par
+-- Dumping data for table `tbl_language`\par
+--\par
+\par
+INSERT INTO `tbl_language` (`lang_id`, `lang_name`) VALUES\par
+(1, 'Abkhaz'),\par
+(2, 'Afar'),\par
+(3, 'Afrikaans'),\par
+(4, 'Akan'),\par
+(5, 'Albanian'),\par
+(6, 'Amharic'),\par
+(7, 'Arabic'),\par
+(8, 'Aragonese'),\par
+(9, 'Armenian'),\par
+(10, 'Assamese'),\par
+(11, 'Avaric'),\par
+(12, 'Avestan'),\par
+(13, 'Aymara'),\par
+(14, 'Azerbaijani'),\par
+(15, 'Bambara'),\par
+(16, 'Bashkir'),\par
+(17, 'Basque'),\par
+(18, 'Belarusian'),\par
+(19, 'Bengali'),\par
+(20, 'Bihari'),\par
+(21, 'Bislama'),\par
+(22, 'Bosnian'),\par
+(23, 'Breton'),\par
+(24, 'Bulgarian'),\par
+(25, 'Burmese'),\par
+(26, 'Catalan'),\par
+(27, 'Valencian'),\par
+(28, 'Chamorro'),\par
+(29, 'Chechen'),\par
+(30, 'Chichewa'),\par
+(31, 'Chewa'),\par
+(32, 'Nyanja'),\par
+(33, 'Chinese'),\par
+(34, 'Chuvash'),\par
+(35, 'Cornish'),\par
+(36, 'Corsican'),\par
+(37, 'Cree'),\par
+(38, 'Croatian'),\par
+(39, 'Czech'),\par
+(40, 'Danish'),\par
+(41, 'Divehi'),\par
+(42, 'Dhivehi'),\par
+(43, 'Maldivian'),\par
+(44, 'Dutch'),\par
+(45, 'English'),\par
+(46, 'Esperanto'),\par
+(47, 'Estonian'),\par
+(48, 'Ewe'),\par
+(49, 'Faroese'),\par
+(50, 'Fijian'),\par
+(51, 'Finnish'),\par
+(52, 'French'),\par
+(53, 'Fula'),\par
+(54, 'Fulah'),\par
+(55, 'Pulaar'),\par
+(56, 'Pular'),\par
+(57, 'Galician'),\par
+(58, 'Georgian'),\par
+(59, 'German'),\par
+(60, 'Greek'),\par
+(61, 'Guaran\'c3\-'),\par
+(62, 'Gujarati'),\par
+(63, 'Haitian'),\par
+(64, 'Haitian Creole'),\par
+(65, 'Hausa'),\par
+(66, 'Hebrew'),\par
+(67, 'Herero'),\par
+(68, 'Hindi'),\par
+(69, 'Hiri Motu'),\par
+(70, 'Hungarian'),\par
+(71, 'Interlingua'),\par
+(72, 'Indonesian'),\par
+(73, 'Interlingue'),\par
+(74, 'Irish'),\par
+(75, 'Igbo'),\par
+(76, 'Inupiaq'),\par
+(77, 'Ido'),\par
+(78, 'Icelandic'),\par
+(79, 'Italian'),\par
+(80, 'Inuktitut'),\par
+(81, 'Japanese'),\par
+(82, 'Javanese'),\par
+(83, 'Kalaallisut'),\par
+(84, 'Greenlandic'),\par
+(85, 'Kannada'),\par
+(86, 'Kanuri'),\par
+(87, 'Kashmiri'),\par
+(88, 'Kazakh'),\par
+(89, 'Khmer'),\par
+(90, 'Kikuyu'),\par
+(91, 'Gikuyu'),\par
+(92, 'Kinyarwanda'),\par
+(93, 'Kirghiz'),\par
+(94, 'Kyrgyz'),\par
+(95, 'Komi'),\par
+(96, 'Kongo'),\par
+(97, 'Korean'),\par
+(98, 'Kurdish'),\par
+(99, 'Kwanyama'),\par
+(100, 'Kuanyama'),\par
+(101, 'Latin'),\par
+(102, 'Luxembourgish'),\par
+(103, 'Letzeburgesch'),\par
+(104, 'Luganda'),\par
+(105, 'Limburgish'),\par
+(106, 'Limburgan'),\par
+(107, 'Limburger'),\par
+(108, 'Lingala'),\par
+(109, 'Lao'),\par
+(110, 'Lithuanian'),\par
+(111, 'Luba-Katanga'),\par
+(112, 'Latvian'),\par
+(113, 'Manx'),\par
+(114, 'Macedonian'),\par
+(115, 'Malagasy'),\par
+(116, 'Malay'),\par
+(117, 'Malayalam'),\par
+(118, 'Maltese'),\par
+(119, 'Maori'),\par
+(120, 'Marathi'),\par
+(121, 'Marshallese'),\par
+(122, 'Mongolian'),\par
+(123, 'Nauru'),\par
+(124, 'Navajo'),\par
+(125, 'Navaho'),\par
+(126, 'Norwegian Bokmal'),\par
+(127, 'North Ndebele'),\par
+(128, 'Nepali'),\par
+(129, 'Ndonga'),\par
+(130, 'Norwegian Nynorsk'),\par
+(131, 'Norwegian'),\par
+(132, 'Nuosu'),\par
+(133, 'South Ndebele'),\par
+(134, 'Occitan'),\par
+(135, 'Ojibwe'),\par
+(136, 'Ojibwa'),\par
+(137, 'Old Church Slavonic'),\par
+(138, 'Church Slavic'),\par
+(139, 'Church Slavonic'),\par
+(140, 'Old Bulgarian'),\par
+(141, 'Old Slavonic'),\par
+(142, 'Oromo'),\par
+(143, 'Oriya'),\par
+(144, 'Ossetian'),\par
+(145, 'Ossetic'),\par
+(146, 'Panjabi'),\par
+(147, 'Punjabi'),\par
+(148, 'Pali'),\par
+(149, 'Persian'),\par
+(150, 'Polish'),\par
+(151, 'Pashto'),\par
+(152, 'Pushto'),\par
+(153, 'Portuguese'),\par
+(154, 'Quechua'),\par
+(155, 'Romansh'),\par
+(156, 'Kirundi'),\par
+(157, 'Romanian'),\par
+(158, 'Moldavian'),\par
+(159, 'Moldovan'),\par
+(160, 'Russian'),\par
+(161, 'Sanskrit'),\par
+(162, 'Sardinian'),\par
+(163, 'Sindhi'),\par
+(164, 'Northern Sami'),\par
+(165, 'Samoan'),\par
+(166, 'Sango'),\par
+(167, 'Serbian'),\par
+(168, 'Scottish Gaelic'),\par
+(169, 'Gaelic'),\par
+(170, 'Shona'),\par
+(171, 'Sinhala'),\par
+(172, 'Sinhalese'),\par
+(173, 'Slovak'),\par
+(174, 'Slovene'),\par
+(175, 'Somali'),\par
+(176, 'Southern Sotho'),\par
+(177, 'Spanish'),\par
+(178, 'Castilian'),\par
+(179, 'Sundanese'),\par
+(180, 'Swahili'),\par
+(181, 'Swati'),\par
+(182, 'Swedish'),\par
+(183, 'Tamil'),\par
+(184, 'Telugu'),\par
+(185, 'Tajik'),\par
+(186, 'Thai'),\par
+(187, 'Tigrinya'),\par
+(188, 'Tibetan Standard'),\par
+(189, 'Tibetan'),\par
+(190, 'Turkmen'),\par
+(191, 'Tagalog'),\par
+(192, 'Tswana'),\par
+(193, 'Tonga'),\par
+(194, 'Turkish'),\par
+(195, 'Tsonga'),\par
+(196, 'Tatar'),\par
+(197, 'Twi'),\par
+(198, 'Tahitian'),\par
+(199, 'Uighur'),\par
+(200, 'Uyghur'),\par
+(201, 'Ukrainian'),\par
+(202, 'Urdu'),\par
+(203, 'Uzbek'),\par
+(204, 'Venda'),\par
+(205, 'Vietnamese'),\par
+(206, 'Volapuk'),\par
+(207, 'Walloon'),\par
+(208, 'Welsh'),\par
+(209, 'Wolof'),\par
+(210, 'Western Frisian'),\par
+(211, 'Xhosa'),\par
+(212, 'Yiddish'),\par
+(213, 'Yoruba'),\par
+(214, 'Zhuang'),\par
+(215, 'Chuang');\par
+\par
+-- --------------------------------------------------------\par
+\par
+--\par
+-- Table structure for table `tbl_movies`\par
+--\par
+\par
+DROP TABLE IF EXISTS `tbl_movies`;\par
+CREATE TABLE IF NOT EXISTS `tbl_movies` (\par
+  `movies_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,\par
+  `movies_cover` varchar(75) NOT NULL DEFAULT 'cover_default.jpg',\par
+  `movies_title` varchar(125) NOT NULL,\par
+  `movies_year` varchar(5) NOT NULL,\par
+  `movies_runtime` varchar(25) NOT NULL,\par
+  `movies_storyline` text NOT NULL,\par
+  `movies_trailer` varchar(75) NOT NULL DEFAULT 'trailer_default.jpg',\par
+  `movies_release` varchar(125) NOT NULL,\par
+  PRIMARY KEY (`movies_id`)\par
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;\par
+\par
+--\par
+-- Dumping data for table `tbl_movies`\par
+--\par
+\par
+INSERT INTO `tbl_movies` (`movies_id`, `movies_cover`, `movies_title`, `movies_year`, `movies_runtime`, `movies_storyline`, `movies_trailer`, `movies_release`) VALUES\par
+(1, 'guardians2.jpg', 'Guardians of the Galaxy Vol. 2', '2017', '2h 16m', 'The Guardians must fight to keep their newfound family together as they unravel the mystery of Peter Quill&rsquo;s true parentage.', 'Guardians2.mp4', 'May 5, 2017'),\par
+(2, 'dunkirk.jpg', 'Dunkirk', '2017', '1h 46m', 'Allied soldiers from Belgium, the British Empire and France are surrounded by the German army and evacuated during a fierce battle in World War II.', 'Dunkirk.mp4', 'July 21, 2017'),\par
+(3, 'logan.jpg', 'Logan', '2017', '2h 17m', 'In the near future, a weary Logan cares for an ailing Professor X, somewhere on the Mexican border. However, Logan&rsquo;s attempts to hide from the world, and his legacy, are upended when a young mutant arrives, pursued by dark forces.', 'Logan.mp4', 'March 3,2017'),\par
+(4, 'okja.jpg', 'Okja', '2017', '2h', ' Meet Mija, a young girl who risks everything to prevent a powerful, multi-national company from kidnapping her best friend - a fascinating animal named Okja. ', 'Okja.mp4', 'June 28,2017'),\par
+(5, 'beauty.jpg', 'Beauty and the Beast', '2017', '2h 9min', 'An adaptation of the fairy tale about a monstrous-looking prince and a young woman who fall in love. ', 'Beauty.mp4', 'March 17, 2017'),\par
+(6, 'hacksaw.jpg', 'Hacksaw Ridge', '2016', '2h 19m', 'WWII American Army Medic Desmond T. Doss, who served during the Battle of Okinawa, refuses to kill people, and becomes the first man in American history to receive the Medal of Honor without firing a shot.', 'Hacksaw.mp4', 'November 4, 2016'),\par
+(7, 'deadpool.jpg', 'Deadpool', '2016', '1h 48m', 'A fast-talking mercenary with a morbid sense of humor is subjected to a rogue experiment that leaves him with accelerated healing powers and a quest for revenge.', 'Bloodpool.mp4', 'Febuary 12, 2016'),\par
+(8, 'arrival.jpg', 'Arrival', '2016', '1h 56m', 'When twelve mysterious spacecraft appear around the world, linguistics professor Louise Banks is tasked with interpreting the language of the apparent alien visitors.', 'Arrival.mp4', 'November 11, 2016'),\par
+(9, 'eddie.jpg', 'Eddie the Eagle', '2016', '1h 46m', 'The story of Eddie Edwards, the notoriously tenacious British underdog ski jumper who charmed the world at the 1988 Winter Olympics.', 'Eddie.mp4', 'Febuary 26, 2016'),\par
+(10, 'trolls.jpg', 'Trolls', '2016', '1h 32m', 'After the Bergens invade Troll Village, Poppy, the happiest Troll ever born, and the curmudgeonly Branch set off on a journey to rescue her friends.', 'Trolls.mp4', 'November 4, 2016'),\par
+(11, 'revenant.jpg', 'The Revenant', '2015', '2h 36m', 'A frontiersman on a fur trading expedition in the 1820s fights for survival after being mauled by a bear and left for dead by members of his own hunting team.', 'Revenant.mp4', 'January 8, 2015'),\par
+(12, 'brooklyn.jpg', 'Brooklyn', '2015', '1h 57m', 'An Irish immigrant lands in 1950s Brooklyn, where she quickly falls into a romance with a local. When her past catches up with her, however, she must choose between two countries and the lives that exist within.', 'Brooklyn.mp4', 'November 25, 2015'),\par
+(13, 'walk.jpg', 'The Walk', '2015', '2h 3m', 'In 1974, high-wire artist Philippe Petit recruits a team of people to help him realize his dream: to walk the immense void between the World Trade Center towers.', 'Walk.mp4', 'October 9, 2015'),\par
+(14, 'colonia.jpg', 'Colonia', '2015', '1h 46m', 'A young woman&rsquo;s desperate search for her abducted boyfriend that draws her into the infamous Colonia Dignidad, a sect nobody has ever escaped from.', 'Colonia.mp4', 'April 15, 2015'),\par
+(15, 'force.jpg', 'Star Wars: The Force Awakens', '2015', '2h 16m', 'Three decades after the Empire&rsquo;s defeat, a new threat arises in the militant First Order. Stormtrooper defector Finn and spare parts scavenger Rey are caught up in the Resistance&rsquo;s search for the missing Luke Skywalker.', 'Force.mp4', 'December 18, 2015'),\par
+(16, 'whiplash.jpg', 'Whiplash', '2014', '1h 47m', 'A promising young drummer enrolls at a cut-throat music conservatory where his dreams of greatness are mentored by an instructor who will stop at nothing to realize a student\\'s potential.', 'Whiplash.mp4', 'October 15, 2014'),\par
+(17, 'guardians.jpg', 'Guardians of the Galaxy', '2014', '2h 1m', 'A group of intergalactic criminals are forced to work together to stop a fanatical warrior from taking control of the universe.', 'Guardians.mp4', 'August 1, 2014'),\par
+(18, 'donjon.jpg', 'Don Jon', '2013', '1h 30m', 'A New Jersey guy dedicated to his family, friends, and church, develops unrealistic expectations from watching porn and works to find happiness and intimacy with his potential true love.', 'donjon.mp4', 'September 27, 2013'),\par
+(19, 'gravity.jpg', 'Gravity', '2013', '1h 31m', 'Two astronauts work together to survive after an accident which leaves them alone in space.', 'Gravity.mp4', 'October 4, 2013'),\par
+(20, 'pi.jpg', 'Life of Pi', '2012', '2h 7m', 'A young man who survives a disaster at sea is hurtled into an epic journey of adventure and discovery. While cast away, he forms an unexpected connection with another survivor: a fearsome Bengal tiger.', 'Pi.jpg', 'November 21, 2012'),\par
+(21, 'silver.jpg', 'Silver Linings Playbook', '2012', '2h 2m', 'After a stint in a mental institution, former teacher Pat Solitano moves back in with his parents and tries to reconcile with his ex-wife. Things get more challenging when Pat meets Tiffany, a mysterious girl with problems of her own.', 'Silver.jpg', 'December 25, 2012');\par
+\par
+-- --------------------------------------------------------\par
+\par
+--\par
+-- Table structure for table `tbl_mov_cast`\par
+--\par
+\par
+DROP TABLE IF EXISTS `tbl_mov_cast`;\par
+CREATE TABLE IF NOT EXISTS `tbl_mov_cast` (\par
+  `mov_cast_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,\par
+  `movies_id` mediumint(9) NOT NULL,\par
+  `cast_id` mediumint(9) NOT NULL,\par
+  PRIMARY KEY (`mov_cast_id`)\par
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;\par
+\par
+--\par
+-- Dumping data for table `tbl_mov_cast`\par
+--\par
+\par
+INSERT INTO `tbl_mov_cast` (`mov_cast_id`, `movies_id`, `cast_id`) VALUES\par
+(1, 1, 1),\par
+(2, 1, 2),\par
+(3, 1, 3),\par
+(4, 1, 4),\par
+(5, 1, 5),\par
+(6, 2, 6),\par
+(7, 2, 7),\par
+(8, 2, 8),\par
+(9, 2, 9),\par
+(10, 2, 10),\par
+(11, 3, 11),\par
+(12, 3, 12),\par
+(13, 3, 13),\par
+(14, 3, 14),\par
+(15, 3, 15),\par
+(16, 4, 16),\par
+(17, 4, 17),\par
+(18, 4, 18),\par
+(19, 4, 19),\par
+(20, 4, 20),\par
+(21, 5, 21),\par
+(22, 5, 22),\par
+(23, 5, 23),\par
+(24, 5, 24),\par
+(25, 5, 25),\par
+(26, 6, 26),\par
+(27, 6, 27),\par
+(28, 6, 28),\par
+(29, 6, 29),\par
+(30, 6, 30),\par
+(31, 7, 31),\par
+(32, 7, 32),\par
+(33, 7, 33),\par
+(34, 7, 34),\par
+(35, 7, 35),\par
+(36, 8, 36),\par
+(37, 8, 37),\par
+(38, 8, 38),\par
+(39, 8, 39),\par
+(40, 8, 40),\par
+(41, 9, 41),\par
+(42, 10, 42),\par
+(43, 11, 43),\par
+(44, 12, 44),\par
+(45, 13, 45),\par
+(46, 14, 21),\par
+(47, 15, 46),\par
+(48, 16, 47),\par
+(49, 17, 1),\par
+(50, 18, 45),\par
+(51, 19, 52),\par
+(52, 20, 53),\par
+(53, 21, 5);\par
+\par
+-- --------------------------------------------------------\par
+\par
+--\par
+-- Table structure for table `tbl_mov_country`\par
+--\par
+\par
+DROP TABLE IF EXISTS `tbl_mov_country`;\par
+CREATE TABLE IF NOT EXISTS `tbl_mov_country` (\par
+  `mov_country_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,\par
+  `movies_id` mediumint(9) NOT NULL,\par
+  `country_id` smallint(6) NOT NULL,\par
+  PRIMARY KEY (`mov_country_id`)\par
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;\par
+\par
+--\par
+-- Dumping data for table `tbl_mov_country`\par
+--\par
+\par
+INSERT INTO `tbl_mov_country` (`mov_country_id`, `movies_id`, `country_id`) VALUES\par
+(1, 1, 34),\par
+(2, 1, 134),\par
+(3, 1, 184),\par
+(4, 2, 184),\par
+(5, 2, 183),\par
+(6, 2, 131),\par
+(7, 2, 64),\par
+(8, 3, 12),\par
+(9, 3, 34),\par
+(10, 3, 184),\par
+(11, 4, 184),\par
+(12, 4, 97),\par
+(13, 5, 183),\par
+(14, 5, 184),\par
+(15, 6, 184),\par
+(16, 6, 12),\par
+(17, 7, 184),\par
+(18, 8, 184),\par
+(19, 9, 183),\par
+(20, 9, 184),\par
+(21, 9, 68),\par
+(22, 10, 184),\par
+(23, 11, 184),\par
+(24, 11, 81),\par
+(25, 11, 171);\par
+\par
+-- --------------------------------------------------------\par
+\par
+--\par
+-- Table structure for table `tbl_mov_director`\par
+--\par
+\par
+DROP TABLE IF EXISTS `tbl_mov_director`;\par
+CREATE TABLE IF NOT EXISTS `tbl_mov_director` (\par
+  `mov_director_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,\par
+  `movies_id` mediumint(9) NOT NULL,\par
+  `director_id` smallint(6) NOT NULL,\par
+  PRIMARY KEY (`mov_director_id`)\par
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;\par
+\par
+--\par
+-- Dumping data for table `tbl_mov_director`\par
+--\par
+\par
+INSERT INTO `tbl_mov_director` (`mov_director_id`, `movies_id`, `director_id`) VALUES\par
+(1, 1, 1),\par
+(2, 2, 2),\par
+(3, 3, 3),\par
+(4, 4, 4),\par
+(5, 5, 5),\par
+(6, 6, 6),\par
+(7, 7, 7),\par
+(8, 8, 8),\par
+(9, 9, 9),\par
+(10, 10, 10),\par
+(11, 10, 11),\par
+(12, 11, 12),\par
+(13, 12, 13),\par
+(14, 13, 14),\par
+(15, 14, 15),\par
+(16, 15, 16),\par
+(17, 16, 17),\par
+(18, 17, 1),\par
+(19, 18, 19),\par
+(20, 19, 20),\par
+(21, 20, 21);\par
+\par
+-- --------------------------------------------------------\par
+\par
+--\par
+-- Table structure for table `tbl_mov_genre`\par
+--\par
+\par
+DROP TABLE IF EXISTS `tbl_mov_genre`;\par
+CREATE TABLE IF NOT EXISTS `tbl_mov_genre` (\par
+  `mov_genre_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,\par
+  `movies_id` mediumint(9) NOT NULL,\par
+  `genre_id` mediumint(9) NOT NULL,\par
+  PRIMARY KEY (`mov_genre_id`)\par
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;\par
+\par
+--\par
+-- Dumping data for table `tbl_mov_genre`\par
+--\par
+\par
+INSERT INTO `tbl_mov_genre` (`mov_genre_id`, `movies_id`, `genre_id`) VALUES\par
+(1, 1, 1),\par
+(2, 1, 2),\par
+(3, 1, 9),\par
+(4, 2, 1),\par
+(5, 2, 5),\par
+(6, 2, 6),\par
+(7, 2, 10),\par
+(8, 3, 1),\par
+(9, 3, 5),\par
+(10, 3, 9),\par
+(11, 4, 1),\par
+(12, 4, 2),\par
+(13, 4, 5),\par
+(14, 4, 9),\par
+(15, 5, 8),\par
+(16, 5, 13),\par
+(17, 5, 14),\par
+(18, 6, 5),\par
+(19, 6, 6),\par
+(20, 6, 10),\par
+(21, 7, 1),\par
+(22, 7, 2),\par
+(23, 7, 3),\par
+(24, 7, 15),\par
+(25, 8, 5),\par
+(26, 8, 9),\par
+(27, 9, 3),\par
+(28, 9, 5),\par
+(29, 9, 16),\par
+(30, 10, 14),\par
+(31, 10, 2),\par
+(32, 10, 3),\par
+(33, 10, 8),\par
+(34, 10, 13),\par
+(35, 11, 2),\par
+(36, 11, 5);\par
+\par
+-- --------------------------------------------------------\par
+\par
+--\par
+-- Table structure for table `tbl_mov_lang`\par
+--\par
+\par
+DROP TABLE IF EXISTS `tbl_mov_lang`;\par
+CREATE TABLE IF NOT EXISTS `tbl_mov_lang` (\par
+  `mov_lang_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,\par
+  `movies_id` mediumint(9) NOT NULL,\par
+  `language_id` smallint(6) NOT NULL,\par
+  PRIMARY KEY (`mov_lang_id`)\par
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;\par
+\par
+--\par
+-- Dumping data for table `tbl_mov_lang`\par
+--\par
+\par
+INSERT INTO `tbl_mov_lang` (`mov_lang_id`, `movies_id`, `language_id`) VALUES\par
+(1, 1, 45),\par
+(2, 2, 45),\par
+(3, 2, 52),\par
+(4, 2, 59),\par
+(5, 3, 45),\par
+(6, 3, 177),\par
+(7, 4, 45),\par
+(8, 4, 177),\par
+(9, 4, 97),\par
+(10, 5, 45),\par
+(11, 6, 45),\par
+(12, 6, 81),\par
+(13, 7, 45),\par
+(14, 8, 45),\par
+(15, 8, 33),\par
+(16, 8, 160),\par
+(17, 9, 45),\par
+(18, 9, 126),\par
+(19, 9, 59),\par
+(20, 10, 45),\par
+(21, 11, 45),\par
+(22, 11, 52);\par
+\par
+-- --------------------------------------------------------\par
+\par
+--\par
+-- Table structure for table `tbl_mov_studio`\par
+--\par
+\par
+DROP TABLE IF EXISTS `tbl_mov_studio`;\par
+CREATE TABLE IF NOT EXISTS `tbl_mov_studio` (\par
+  `mov_studio_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,\par
+  `movies_id` mediumint(9) NOT NULL,\par
+  `studio_id` smallint(6) NOT NULL,\par
+  PRIMARY KEY (`mov_studio_id`)\par
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;\par
+\par
+--\par
+-- Dumping data for table `tbl_mov_studio`\par
+--\par
+\par
+INSERT INTO `tbl_mov_studio` (`mov_studio_id`, `movies_id`, `studio_id`) VALUES\par
+(1, 1, 1),\par
+(2, 2, 2),\par
+(3, 3, 3),\par
+(4, 4, 4),\par
+(5, 5, 5),\par
+(6, 6, 6),\par
+(7, 7, 7),\par
+(8, 8, 8),\par
+(9, 9, 9),\par
+(10, 10, 10),\par
+(11, 11, 11),\par
+(12, 12, 12),\par
+(13, 13, 13),\par
+(14, 14, 14),\par
+(15, 15, 15),\par
+(16, 16, 16),\par
+(17, 17, 1),\par
+(18, 18, 17),\par
+(19, 19, 18),\par
+(20, 20, 19),\par
+(21, 21, 20);\par
+\par
+-- --------------------------------------------------------\par
+\par
+--\par
+-- Table structure for table `tbl_studio`\par
+--\par
+\par
+DROP TABLE IF EXISTS `tbl_studio`;\par
+CREATE TABLE IF NOT EXISTS `tbl_studio` (\par
+  `studio_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,\par
+  `studio_name` varchar(125) NOT NULL,\par
+  PRIMARY KEY (`studio_id`)\par
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;\par
+\par
+--\par
+-- Dumping data for table `tbl_studio`\par
+--\par
+\par
+INSERT INTO `tbl_studio` (`studio_id`, `studio_name`) VALUES\par
+(1, 'Marvel Studios'),\par
+(2, 'Syncopy'),\par
+(3, 'Donners Company'),\par
+(4, 'Kate Street Picture Company'),\par
+(5, 'Mandeville Films'),\par
+(6, 'Cross Creek Pictures'),\par
+(7, 'Twentieth Century Fox Film Corporation'),\par
+(8, 'Lava Bear Films'),\par
+(9, 'Hurwitz Creative'),\par
+(10, 'DreamWorks Animation'),\par
+(11, 'Regency Enterprises'),\par
+(12, 'Wildgaze Films'),\par
+(13, 'Sony Pictures Entertainment (SPE)'),\par
+(14, 'Majestic Filmproduktion'),\par
+(15, 'Lucasfilm'),\par
+(16, 'Bold Films'),\par
+(17, 'Voltage Pictures'),\par
+(18, 'Warner Bros.'),\par
+(19, 'Fox 2000 Pictures'),\par
+(20, 'Weinstein Company');\par
+\par
+-- --------------------------------------------------------\par
+\par
+--\par
+-- Table structure for table `tbl_urating`\par
+--\par
+\par
+DROP TABLE IF EXISTS `tbl_urating`;\par
+CREATE TABLE IF NOT EXISTS `tbl_urating` (\par
+  `rating_id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT,\par
+  `rating_number` tinyint(4) NOT NULL,\par
+  PRIMARY KEY (`rating_id`)\par
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;\par
+\par
+-- --------------------------------------------------------\par
+\par
+--\par
+-- Table structure for table `tbl_user`\par
+--\par
+\par
+DROP TABLE IF EXISTS `tbl_user`;\par
+CREATE TABLE IF NOT EXISTS `tbl_user` (\par
+  `user_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,\par
+  `user_fname` varchar(250) NOT NULL,\par
+  `user_name` varchar(250) NOT NULL,\par
+  `user_pass` varchar(250) NOT NULL,\par
+  `user_email` varchar(250) NOT NULL,\par
+  `user_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\par
+  `user_lastlogin` datetime DEFAULT CURRENT_TIMESTAMP,\par
+  `user_attempts` time DEFAULT NULL,\par
+  `user_ip` varchar(50) NOT NULL DEFAULT 'no',\par
+  PRIMARY KEY (`user_id`)\par
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;\par
+\par
+--\par
+-- Dumping data for table `tbl_user`\par
+--\par
+\par
+INSERT INTO `tbl_user` (`user_id`, `user_fname`, `user_name`, `user_pass`, `user_email`, `user_date`, `user_lastlogin`, `user_attempts`, `user_ip`) VALUES\par
+(1, 'Karlee', 'kar', 'password', 'kar23@gmail.com', '2018-02-08 21:01:36', '2018-02-17 20:50:06', '00:00:00', '::1'),\par
+(3, 'Tester', 'test', 'test', 'testme@gmail.com', '2018-02-19 23:12:23', '2018-02-19 18:12:23', '00:00:03', 'no');\par
+COMMIT;\par
+\par
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;\par
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;\par
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;\par
+\par
+}
+ 
